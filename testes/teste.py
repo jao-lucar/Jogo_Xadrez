@@ -1,5 +1,5 @@
 # aqui é aonde eu uso pra testar o que esotu aprendendo sobre o pygame, ja que nunca o ultilizei antes
-
+# isso aqui é uma bagunça!
 
 import pygame
 
@@ -11,8 +11,8 @@ largura = 1260
 
 
 quadros = [
-    pygame.image.load('pecas/pecas_pretas/nova.png'),
-
+    pygame.image.load('../pecas/pecas_pretas/torre_p.png'),
+    pygame.image.load('../pecas/pecas_brancas/bispo_b.png')
 ]
 quadro_atual = 0
 tempo_quadro = 300
@@ -27,9 +27,12 @@ pygame.display.set_caption("Primeiro Jogo! ")
 velocidade = 1
 x = 100
 y = 50
+def teste(janela: pygame.Surface, x, y):
+    janela.blit(quadros[1], (x, y))
 
-retangulo1 = pygame.Rect(700, 700, 50, 50)
-retangulo2 = pygame.Rect(900, 700, 400, 50)
+
+retangulo1 = pygame.Rect(300, 100, 50, 50)
+retangulo2 = pygame.Rect(50, 50, 85, 85)
 
 
 rodando = True
@@ -38,6 +41,7 @@ while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
+
 
     teclas = pygame.key.get_pressed()
     if teclas[pygame.K_LEFT]:
@@ -51,7 +55,9 @@ while rodando:
 
     if pygame.mouse.get_pressed()[0]:
         posicao_mouse = pygame.mouse.get_pos()
-        x, y = posicao_mouse
+        x, y = 50, 50
+        retangulo1.move_ip(x, y)
+
 
     tempo_atual = pygame.time.get_ticks()
     if tempo_atual - tempo_anterior >= tempo_quadro:
@@ -66,13 +72,14 @@ while rodando:
 
     if retangulo1.colliderect(retangulo2):
         print('Colisão detectada')
-    retangulo1 = pygame.Rect(x, y, 50, 50)
 
+    #retangulo1[0] = x
+    #retangulo1[1] = y
     pygame.draw.rect(janela, (255, 0, 0), retangulo1)
     pygame.draw.rect(janela, (255, 0, 0), retangulo2)
 
+    teste(janela, x, y)
 
-    pygame.draw.rect(janela, (255, 0, 255), (x, y, 20, 20))
     pygame.display.update()
 
 

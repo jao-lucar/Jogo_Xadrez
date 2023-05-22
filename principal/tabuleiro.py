@@ -1,8 +1,14 @@
 import pygame
 
 
+def between(x, valor1, valor2):
+    # verifica se x esta entre valor1 e valor 2
+    if valor1 <= x <= valor2:
+        return True
+    else:
+        return False
 
-class Criar_tabuleiro():
+class Criar_tabuleiro:
     def criar_tabuleiro(self):
         tabuleiro = {
 
@@ -32,13 +38,13 @@ class Criar_tabuleiro():
 
         return tabuleiro
 
+
 class Tabuleiro():
     def __init__(self, tabuleiro):
         self.tabuleiro = tabuleiro
 
-
-    # recebe o tabuleiro com ou sem as peças e desenha ele na tela do pygame
     def desenhar_tabuleiro(self, janela: pygame.Surface):
+        # recebe o tabuleiro com ou sem as peças e desenha ele na tela do pygame
 
         cores = [
             (64, 43, 35),  # marrom escuro
@@ -61,5 +67,30 @@ class Tabuleiro():
                 z = 1 if z == 0 else 0
             z = 1 if z == 0 else 0
 
+    # essa função recebe a posição do clique do mouse
+    # e encontra primeiro a coluna aonde se clicou,
+    #  exemplo, o primeiro quadrado começa em 85x
+    # eu vejos e o x do mouse esta entre o inicio do quadrado em pixels
+    # e o final do quadrado que é o inicio dele somado com  o tamanho do quadrado
+    # com isso eu encontro a coluna e depois é so achar a linha verificando somente
+    # nos quadrados daquela coluna, desse jeito eu não preciso verificar os 64 quadrados
+    def pegar_quadrado_clicado(self, x, y):
+        linha = 0
+        coluna = 0
+        count = 0
+        # j = cada quadrado da 1ºlinha, index_coluna = posição dos quadrados da 1ºlinha
+        # primeiro eu verifico qual coluna a peça esta
+        for index_coluna, j in enumerate(self.tabuleiro[0]):
+            # j[0][0] = px de x, j[0][1] = px de y, j[0][2] = dimenções do quadrado
+            if between(x, int(j[0][0]), int(j[0][0] + 85)):
+                coluna = index_coluna
+                break
 
+        # Depois verifico qual a linha que a peça esta
+        for index_linha, i in enumerate(self.tabuleiro.values()):
+            # i[coluna][quadrado][valor y]
+            if between(y, i[coluna][0][1], i[coluna][0][1] + 85):
+                linha = index_linha
+                break
 
+        return [linha, coluna]

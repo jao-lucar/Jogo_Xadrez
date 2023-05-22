@@ -9,15 +9,16 @@ tabuleiro_inicial = criador.criar_tabuleiro()
 tabuleiro = Tabuleiro(tabuleiro_inicial)
 
 pecas_img = Pecas_img()
-pecas_p = pecas_img.carregar_imagens_pecas('pecas/pecas_pretas')
-pecas_b = pecas_img.carregar_imagens_pecas('pecas/pecas_brancas')
+pecas_p = pecas_img.carregar_imagens_pecas(r'C:\Users\joaol\PycharmProjects\Xadrez\pecas\pecas_pretas')
+pecas_b = pecas_img.carregar_imagens_pecas(r'C:\Users\joaol\PycharmProjects\Xadrez\pecas\pecas_brancas')
 
 peca = Peca()
 peca.posicionar_pecas_iniciais(pecas_p, pecas_b, tabuleiro_inicial)
-
+print(pecas_p)
 
 
 print(tabuleiro_inicial)
+
 
 
 
@@ -49,9 +50,15 @@ while rodando:
         if e.type == pygame.QUIT:
             pygame.quit()
 
+    teclas = pygame.key.get_pressed()
+
+
+
     if pygame.mouse.get_pressed()[0]:
         pos = pygame.mouse.get_pos()
-        print(pos)
+
+        a = tabuleiro.pegar_quadrado_clicado(pos[0], pos[1])
+        print(a)
 
     janela.fill((0, 0, 0))
     tabuleiro.desenhar_tabuleiro(janela)

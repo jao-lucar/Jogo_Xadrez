@@ -14,8 +14,10 @@ O valor 0 é utilizado para representar que não há peça naquele quadrado.
 
 As peças são adicionadas no lugar dos zeros, utilizando objetos Pygame que são
 imagens das peças carregadas por uma função do Pygame. O tabuleiro está montado
-com todas as peças, porém, por enquanto, é apenas uma imagem e ainda não possui
-interação.
+com todas as peças e com a possibilidade de movê-las, mas ainda não existem regras,
+nem é possível capturar as peças, nem decidir a vez de cada jogador.
+Ainda faltam muitas funcionalidades a serem implementadas.
+
 
 Estou animado com o progresso até agora e empolgado para continuar desenvolvendo
 o jogo de xadrez, implementando as funcionalidades e a lógica do jogo. Esse

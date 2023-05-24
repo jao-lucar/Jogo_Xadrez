@@ -70,14 +70,14 @@ class Tabuleiro():
     # essa função recebe a posição do clique do mouse
     # e encontra primeiro a coluna aonde se clicou,
     #  exemplo, o primeiro quadrado começa em 85x
-    # eu vejos e o x do mouse esta entre o inicio do quadrado em pixels
+    # eu vejo se o x do mouse estar entre o inicio do quadrado em pixels
     # e o final do quadrado que é o inicio dele somado com  o tamanho do quadrado
-    # com isso eu encontro a coluna e depois é so achar a linha verificando somente
+    # com isso eu encontro a coluna, e depois é so achar a linha verificando somente
     # nos quadrados daquela coluna, desse jeito eu não preciso verificar os 64 quadrados
     def pegar_quadrado_clicado(self, x, y):
         linha = 0
         coluna = 0
-        count = 0
+
         # j = cada quadrado da 1ºlinha, index_coluna = posição dos quadrados da 1ºlinha
         # primeiro eu verifico qual coluna a peça esta
         for index_coluna, j in enumerate(self.tabuleiro[0]):
@@ -93,4 +93,10 @@ class Tabuleiro():
                 linha = index_linha
                 break
 
-        return [linha, coluna]
+        return linha, coluna
+
+    def tem_peca(self, linha, coluna):
+        if self.tabuleiro[linha][coluna][1] == 0:
+            return False
+        else:
+            return True

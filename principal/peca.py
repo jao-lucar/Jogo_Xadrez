@@ -53,5 +53,14 @@ class Peca():
 
         return tabuleiro
 
-    def mover_pecas(self):
-        pass
+
+    def pegar_peca(self, linha, coluna, tabuleiro):
+        return  tabuleiro[linha][coluna][1]
+    def remover_peca(self, linha, coluna, tabuleiro):
+        tabuleiro[linha][coluna][1] = 0
+        return tabuleiro
+    def mover_peca(self, linha, coluna, peca, tabuleiro):
+
+        tabuleiro[linha][coluna][1] = peca
+
+        return tabuleiro

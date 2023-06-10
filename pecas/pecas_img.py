@@ -5,8 +5,6 @@ class Pecas_img():
     def __int__(self):
         pass
 
-
-
     def redefinir_tamanho(self, pasta):
         # eu recortei as imagens am 150px por 150px, ja que todas as peças vieram dentro de uma imagem so
         # então eu precisei de diminui-las para 85x85 pra encaixar no tabuleiro

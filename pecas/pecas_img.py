@@ -1,11 +1,14 @@
 from PIL import Image
 from os import listdir
 import pygame
+from pygame import Surface, SurfaceType
+
+
 class Pecas_img():
     def __int__(self):
         pass
 
-    def redefinir_tamanho(self, pasta):
+    def redefinir_tamanho(self, pasta: str) -> None:
         # eu recortei as imagens am 150px por 150px, ja que todas as peças vieram dentro de uma imagem so
         # então eu precisei de diminui-las para 85x85 pra encaixar no tabuleiro
         for nome_imagen in listdir(pasta):
@@ -13,7 +16,7 @@ class Pecas_img():
             nova = atual.resize((85, 85))
             nova.save(rf'C:\Users\joaol\PycharmProjects\Xadrez\pecas\{pasta}\{nome_imagen}')
 
-    def carregar_imagens_pecas(self, pasta):
+    def carregar_imagens_pecas(self, pasta: str) -> dict[str, Surface | SurfaceType]:
         # carrega as imagens das peças usando o pygame para um dicionario,
         # colocando o nome de cada peça como chave para cada objeto pygame
         pecas = {}

@@ -1,15 +1,16 @@
 import pygame
 
 
-def between(x, valor1, valor2):
+def between(x: float, valor1: float, valor2: float) -> bool:
     # verifica se x esta entre valor1 e valor 2
     if valor1 <= x <= valor2:
         return True
     else:
         return False
 
+
 class Criar_tabuleiro:
-    def criar_tabuleiro(self):
+    def criar_tabuleiro(self) -> dict[int, list]:
         tabuleiro = {
 
             0: [],
@@ -39,11 +40,12 @@ class Criar_tabuleiro:
         return tabuleiro
 
 
-class Tabuleiro():
-    def __init__(self, tabuleiro):
-        self.tabuleiro = tabuleiro
+class Tabuleiro(Criar_tabuleiro):
+    def __init__(self):
+        super().__init__()
+        self.tabuleiro = Criar_tabuleiro().criar_tabuleiro()
 
-    def desenhar_tabuleiro(self, janela: pygame.Surface):
+    def desenhar_tabuleiro(self, janela: pygame.Surface) -> None:
         # recebe o tabuleiro com ou sem as peças e desenha ele na tela do pygame
 
         cores = [
@@ -74,7 +76,7 @@ class Tabuleiro():
     # e o final do quadrado que é o inicio dele somado com  o tamanho do quadrado
     # com isso eu encontro a coluna, e depois é so achar a linha verificando somente
     # nos quadrados daquela coluna, desse jeito eu não preciso verificar os 64 quadrados
-    def pegar_quadrado_clicado(self, x, y):
+    def pegar_quadrado_clicado(self, x: int, y: int) -> tuple[int, int]:
         linha = 0
         coluna = 0
 
@@ -82,7 +84,7 @@ class Tabuleiro():
         # primeiro eu verifico qual coluna a peça esta
         for index_coluna, j in enumerate(self.tabuleiro[0]):
             # j[0][0] = px de x, j[0][1] = px de y, j[0][2] = dimenções do quadrado
-            if between(x, int(j[0][0]), int(j[0][0] + 85)):
+            if between(x, j[0][0], j[0][0] + 85):
                 coluna = index_coluna
                 break
 
@@ -95,8 +97,5 @@ class Tabuleiro():
 
         return linha, coluna
 
-    def tem_peca(self, linha, coluna):
-        if self.tabuleiro[linha][coluna][1] == 0:
-            return False
-        else:
-            return True
+    def pegar_tabuleiro(self) -> dict[int, list]:
+        return self.tabuleiro

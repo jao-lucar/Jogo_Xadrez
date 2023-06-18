@@ -1,11 +1,11 @@
+
 import pygame
-
 from tabuleiro import Tabuleiro
-
 
 class Jogo(Tabuleiro):
     def __init__(self):
         super().__init__()
+
         self.tabuleiro = Tabuleiro().pegar_tabuleiro()
 
     def posicionar_pecas_iniciais(self, imgs_pecas_p, imgs_pecas_b) -> None:
@@ -53,14 +53,13 @@ class Jogo(Tabuleiro):
                 elif i == 6:
                     self.tabuleiro[i][j][1] = [imgs_pecas_b[ordem_pecas[2][0]], f"{ordem_pecas[2][0]}{sufixo[1]}"]
 
-    def tem_peca(self, linha: int, coluna: int) -> bool:
-        if self.tabuleiro[linha][coluna][1] == 0:
-            return False
-        else:
-            return True
+    def posicionar_1peca(self, img_peca, cor) -> None:
+        self.tabuleiro[6][4][1] = [img_peca, f"piao_{cor}"]
 
-    def pegar_peca(self, linha: int, coluna: int) -> dict[int, list]:
-        return self.tabuleiro[linha][coluna][1]
+
+
+    def pegar_peca(self, linha: int, coluna: int) -> list:
+        return self.tabuleiro[linha][coluna][1] if self.tabuleiro[linha][coluna][1] != 0 else None
 
     def remover_peca(self, linha: int, coluna: int) -> None:
         self.tabuleiro[linha][coluna][1] = 0

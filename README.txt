@@ -1,6 +1,6 @@
 Estou basicamente criando um jogo de xadrez utilizando o Pygame. Esse projeto
 pessoal tem como objetivo aprimorar minha lógica de programação, estruturação
-de código e meus conhecimentos me Python.
+de código e meus conhecimentos em Python.
 
 Como o jogo de xadrez não é novidade e já existem vários códigos e lógicas
 prontas disponíveis, decidi não utilizar nada pronto. Baseado na lógica do
@@ -13,10 +13,10 @@ objetos Pygame, que representam quadrados desenhados pelo Pygame.
 O valor 0 é utilizado para representar que não há peça naquele quadrado.
 
 As peças são adicionadas no lugar dos zeros, utilizando objetos Pygame que são
-imagens das peças carregadas por uma função do Pygame. O tabuleiro está montado
-com todas as peças e com a possibilidade de movê-las,
-é possível realizar a captura das peças, mas ainda não existem regras
-e não tem como decidir a vez de cada jogador.
+imagens das peças carregadas por uma função do Pygame.
+O tabuleiro está montado com todas as peças e com a possibilidade de movê-las,
+e possível realizar a captura das peças, atualmente somente os piões se movem e
+capturam corretamente e o jogo  decide a vez de cada jogador de acordo com as regras.
 Ainda faltam muitas funcionalidades a serem implementadas.
 
 

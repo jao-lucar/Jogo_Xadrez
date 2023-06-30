@@ -53,8 +53,10 @@ class Jogo(Tabuleiro):
                 elif i == 6:
                     self.tabuleiro[i][j][1] = [imgs_pecas_b[ordem_pecas[2][0]], f"{ordem_pecas[2][0]}{sufixo[1]}"]
 
-    def posicionar_1peca(self, img_peca, cor) -> None:
-        self.tabuleiro[6][4][1] = [img_peca, f"piao_{cor}"]
+    def posicionar_2peca(self, pecas: dict) -> None:
+
+        self.tabuleiro[6][4][1] = [pecas["imagem"][0], f"{pecas['nome'][0]}_{pecas['cor'][0]}"]
+        self.tabuleiro[2][5][1] = [pecas["imagem"][1], f"{pecas['nome'][1]}_{pecas['cor'][1]}"]
 
 
 

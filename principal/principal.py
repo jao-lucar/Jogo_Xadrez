@@ -1,16 +1,20 @@
 import pygame
 from pecasImg.pecas_img import Pecas_img
 from jogo import Jogo
-
+from time import sleep
 pygame.init()
 jogo = Jogo()
 
 pecas_img = Pecas_img()
 pecas_p = pecas_img.carregar_imagens_pecas(r'C:\Users\joaol\PycharmProjects\Xadrez\pecasImg\pecas_pretas')
 pecas_b = pecas_img.carregar_imagens_pecas(r'C:\Users\joaol\PycharmProjects\Xadrez\pecasImg\pecas_brancas')
+pecas = {
+    "imagem": [pecas_b['cavalo'], pecas_p['cavalo']],
+    "cor": ["b", "p"],
+    "nome": ["cavalo", "cavalo"]
+}
 
 jogo.posicionar_pecas_iniciais(pecas_p, pecas_b)
-
 altura = 720
 largura = 900
 janela = pygame.display.set_mode((largura, altura))
@@ -33,6 +37,7 @@ while rodando:
         if e.type == pygame.MOUSEBUTTONDOWN:
 
             vezes_clicado += 1
+            print(alterna)
             pos = pygame.mouse.get_pos()
             linha_atual, coluna_atual = jogo.pegar_quadrado_clicado(pos[0], pos[1])
 
@@ -43,15 +48,28 @@ while rodando:
                     peca = jogo.pegar_peca(linha_atual, coluna_atual)
                     linha_peca_clicada1, coluna_peca_clicada1 = jogo.pegar_quadrado_clicado(pos[0], pos[1])
                     peca_clicada1 = jogo.pegar_peca(linha_atual, coluna_atual)
-                    regra = jogo.aplicar_regra(linha_atual, coluna_atual, peca_clicada1[1])
+                    jogo.aplicar_regra(linha_atual, coluna_atual, peca_clicada1[1], alterna)
                 else:
                     jogo.remover_regra()
                     vezes_clicado = 0
                     break
             elif vezes_clicado == 2:
+                # faz com que fique mais suave a troca de escolha de peça que o jogador quer jogar
+                if jogo.tem_peca(linha_atual, coluna_atual, alternador[alterna]):
+
+                    jogo.remover_regra()
+
+                    peca = jogo.pegar_peca(linha_atual, coluna_atual)
+                    linha_peca_clicada1, coluna_peca_clicada1 = jogo.pegar_quadrado_clicado(pos[0], pos[1])
+                    peca_clicada1 = jogo.pegar_peca(linha_atual, coluna_atual)
+
+                    jogo.aplicar_regra(linha_atual, coluna_atual, peca_clicada1[1], alterna)
+                    vezes_clicado = 1
+                    break
+
                 # logica para capturar peça
-                if jogo.tem_peca(linha_atual, coluna_atual, alternador[1 if alterna == 0 else 0]) \
-                                and jogo.movimento_valido(regra, linha_atual, coluna_atual):
+                if jogo.tem_peca(linha_atual, coluna_atual, alternador[1 if alterna == 0 else 0]) and \
+                    jogo.movimento_valido(linha_atual, coluna_atual):
 
                     # esse metodo ja remove a peça aonde a atual esta sendo posicionada, a logica é uma troca entre os objetos dentro da matriz do xadrez
                     jogo.mover_peca(linha_atual, coluna_atual, linha_peca_clicada1,
@@ -60,7 +78,8 @@ while rodando:
                     alterna = 1 if alterna == 0 else 0
                     vezes_clicado = 0
                     break
-                elif jogo.movimento_valido(regra, linha_atual, coluna_atual):
+                #logica para mover a peça
+                elif jogo.movimento_valido(linha_atual, coluna_atual):
                     jogo.mover_peca(linha_atual, coluna_atual, linha_peca_clicada1, coluna_peca_clicada1, peca_clicada1)
                     jogo.remover_regra()
                     alterna = 1 if alterna == 0 else 0

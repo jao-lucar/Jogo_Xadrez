@@ -59,7 +59,7 @@ class Tabuleiro(Regras_pecas):
             (0, 255, 0),
             (255, 0, 0)
         ]
-        z = 0  # serve para alternar entre as cores marrom escuro e marrom claro
+        z = 1  # serve para alternar entre as cores marrom escuro e marrom claro
         for i in self.tabuleiro.values():  # para cada linha em tabuleiro
             for j in i:  # j = cada lista com j[0] = quadrado e j[1] com 0 ou objeto pygame com a imagem da peça
                 if j[2] not in [1, 2]:

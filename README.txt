@@ -7,7 +7,7 @@ prontas disponíveis, decidi não utilizar nada pronto. Baseado na lógica do
 xadrez, estou tentando abstrair para a programação e criar um código pensado por
 mim.
 
-Até o momento, consegui construir a parte visual do jogo. Utilizo um dicionário
+Construi a parte visual do jogo com a  Utilização um dicionário
 com as chaves indo de 0 a 7, cada uma ligada a uma lista preenchida por 8
 objetos Pygame, que representam quadrados desenhados pelo Pygame.
 O valor 0 é utilizado para representar que não há peça naquele quadrado.
@@ -15,8 +15,8 @@ O valor 0 é utilizado para representar que não há peça naquele quadrado.
 As peças são adicionadas no lugar dos zeros, utilizando objetos Pygame que são
 imagens das peças carregadas por uma função do Pygame.
 O tabuleiro está montado com todas as peças e com a possibilidade de movê-las,
-e possível realizar a captura das peças, atualmente somente os piões se movem e
-capturam corretamente e o jogo  decide a vez de cada jogador de acordo com as regras.
+e possível realizar a captura das peças, somente o rei que não esta configurado
+e o jogo  decide a vez de cada jogador de acordo com as regras.
 Ainda faltam muitas funcionalidades a serem implementadas.
 
 
